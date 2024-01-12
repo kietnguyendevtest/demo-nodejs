@@ -31,7 +31,7 @@ const postController = {
     insert: async(req, res) => {
         try {
             const {title, author, content} = req.body;
-            const sql = 'INSERT INTO posts(title, author, content) VALUES($1, $2, $2) RETURNING *';
+            const sql = 'INSERT INTO posts(title, author, content) VALUES($1, $2, $3) RETURNING *';
             const {rows} = await postgre.query(sql, [title, author, content]);
 
             return res.json({msg: "OK", data: rows[0]});
